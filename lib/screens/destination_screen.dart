@@ -62,7 +62,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                   children: [
                     IconButton(
                         icon: Icon(Icons.arrow_back,),
-                        iconSize: 30.0,
+                        iconSize: 20.0,
                         color: Colors.black,
                         onPressed: () => Navigator.pop(context),
                     ),
@@ -70,13 +70,13 @@ class _DestinationScreenState extends State<DestinationScreen> {
                       children: [
                         IconButton(
                           icon: Icon(Icons.search,),
-                          iconSize: 30.0,
+                          iconSize: 20.0,
                           color: Colors.black,
                           onPressed: () => Navigator.pop(context),
                         ),
                         IconButton(
                           icon: Icon(FontAwesomeIcons.sortAmountDown,),
-                          iconSize: 30.0,
+                          iconSize: 20.0,
                           color: Colors.black,
                           onPressed: () => Navigator.pop(context),
                         ),
@@ -164,7 +164,9 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                   ),
+
                                 ),
+
 
                                 Column(
                                   children: [
@@ -185,8 +187,9 @@ class _DestinationScreenState extends State<DestinationScreen> {
                             Text(activity.type,
                               style: TextStyle(
                                 color: Colors.grey,),),
-                           _buildRatingStars(activity.ratings),
                             SizedBox(height: 10.0,),
+                           _buildRatingStars(activity.ratings),
+                            SizedBox(height: 20.0,),
                             Row(
                               children: [
                                 Container(
@@ -201,7 +204,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                     activity.startTimes[0],
                                   ),
                                 ),
-                                SizedBox(width: 10.0,),
+                                SizedBox(width: 20.0,),
                                 Container(
                                   padding: EdgeInsets.all(5.0),
                                   width: 70.0,

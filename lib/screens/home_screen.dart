@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:travel_app/screens/destination_screen.dart';
+import 'package:travel_app/models/carousel_model.dart';
 import 'package:travel_app/widget/destination_carousel.dart';
 import 'package:travel_app/widget/hotel_carousel.dart';
 
@@ -11,6 +12,14 @@ class HomeScreenState extends StatefulWidget {
 }
 
 class _HomeScreenStateState extends State<HomeScreenState> {
+  int _current = 0;
+  List<T>map<T>(List list, Function handler){
+    List<T> result = [];
+    for(var i = 0; i<list.length; i++){
+      result.add(handler(i, list[i]));
+    }
+    return result;
+  }
 
   int _selectedIndex = 0;
   int _currentTab = 0;
@@ -59,6 +68,60 @@ class _HomeScreenStateState extends State<HomeScreenState> {
               fontWeight: FontWeight.bold),
               ),
             ),
+            SizedBox(height: 12,),
+
+            Container(
+              margin: EdgeInsets.only(left: 8, right: 10),
+              width: MediaQuery.of(context).size.width,
+              height: 190,
+              child: Swiper(
+                onIndexChanged: (index){
+                  setState(() {
+                    _current = index;
+                  });
+                },
+                autoplay: true,
+                layout: SwiperLayout.DEFAULT,
+                itemCount: carousels.length,
+                itemBuilder: (BuildContext context, index){
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                             image: AssetImage(
+                               carousels[index].image!,),
+                      fit: BoxFit.cover),
+                    ),
+                  );
+                },
+              ),
+            ),
+            SizedBox(height: 12,),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children:[
+                  Row(
+                    children: map<Widget> (carousels, (index, image){
+                      return Container(
+                        alignment: Alignment.centerLeft,
+                        height: 6,
+                        width: 6,
+                        margin: EdgeInsets.only(right:8),
+                        decoration: BoxDecoration(shape: BoxShape.circle,
+                        color: _current == index ? Colors.blue : Colors.grey),
+
+                      );
+                  },
+                    ),
+    ),
+                  Text('More...'),
+                ],
+                  ),
+            ),
+
+
             SizedBox(height: 20.0,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -66,6 +129,7 @@ class _HomeScreenStateState extends State<HomeScreenState> {
                     (MapEntry map) => _buildIcon(map.key),
             ).toList(),
             ),
+
             SizedBox(height: 20.0,),
 
             DestinationCarousel(),

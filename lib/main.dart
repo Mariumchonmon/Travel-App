@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/screens/home_screen.dart';
-
+// @dart=2.9
 void main() {
   runApp(MyApp());
 }
